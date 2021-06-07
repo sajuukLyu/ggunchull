@@ -34,7 +34,7 @@ ggplot(plotData, aes(x = tSNE_1, y = tSNE_2, fill = cluster, color = cluster)) +
   )
 ```
 
-![](plot\circleClusters.png)
+![](plot/circleClusters.png)
 
 The key function is `stat_unchull`, which can draw a smooth non-convex circle around every groups of cells.
 
