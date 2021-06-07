@@ -7,7 +7,7 @@
 stat_unchull(mapping = NULL, data = NULL, geom = "polygon",
   position = "identity", na.rm = F, show.legend = NA,
   inherit.aes = T, nbin = 100, nsm = 10, addsm = 1, qval = 0.95,
-  sizefac = 1.5, ...)
+  sfac = 1.5, ...)
 }
 \arguments{
 \item{mapping}{Set of aesthetic mappings created by \code{\link[=aes]{aes()}} or
@@ -35,6 +35,9 @@ from a \code{formula} (e.g. \code{~ head(.x, 10)}).}
 \item{position}{Position adjustment, either as a string, or the result of
 a call to a position adjustment function.}
 
+\item{na.rm}{If \code{FALSE}, the default, missing values are removed with
+a warning. If \code{TRUE}, missing values are silently removed.}
+
 \item{show.legend}{logical. Should this layer be included in the legends?
 \code{NA}, the default, includes if any aesthetics are mapped.
 \code{FALSE} never includes, and \code{TRUE} always includes.
@@ -54,7 +57,12 @@ the default plot specification, e.g. \code{\link[=borders]{borders()}}.}
 
 \item{qval}{quantile of each sector, used to determine the edge of the hull, should less than 1, default 0.95}
 
-\item{sizefac}{expansion size factor, larger value means bigger hull, default 1.5}
+\item{sfac}{expansion size factor, larger value means bigger hull, default 1.5}
+
+\item{...}{Other arguments passed on to \code{\link[=layer]{layer()}}. These are
+often aesthetics, used to set an aesthetic to a fixed value, like
+\code{colour = "red"} or \code{size = 3}. They may also be parameters
+to the paired geom/stat.}
 }
 \description{
 A ggplot function used to get a hull of input set of points. The hull can be non-convex.

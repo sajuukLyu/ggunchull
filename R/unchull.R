@@ -9,12 +9,12 @@
 #' @param nsm number of points used to perform convolution, should less than \code{nbin}, default 10
 #' @param addsm number of additional times of revolution performed, default 1
 #' @param qval quantile of each sector, used to determine the edge of the hull, should less than 1, default 0.95
-#' @param sizefac expansion size factor, larger value means bigger hull, default 1.5
+#' @param sfac expansion size factor, larger value means bigger hull, default 1.5
 #'
 #' @return a list of coordinates of the hull
 #'
 #' @export
-smoothUnchull <- function(x, y, nbin = 100, nsm = 10, addsm = 1, qval = 0.95, sizefac = 1.5) {
+smoothUnchull <- function(x, y, nbin = 100, nsm = 10, addsm = 1, qval = 0.95, sfac = 1.5) {
 
   # convert to polar
   polarDim <- cart2polar(x, y)
@@ -38,7 +38,7 @@ smoothUnchull <- function(x, y, nbin = 100, nsm = 10, addsm = 1, qval = 0.95, si
   }
 
   # convert back
-  polar2cart(smVal * sizefac, 2 * (1:nbin)/nbin, median(x), median(y))
+  polar2cart(smVal * sfac, 2 * (1:nbin)/nbin, median(x), median(y))
 }
 
 #' cart2polar
@@ -102,9 +102,9 @@ polar2cart <- function(r, t, xm, ym) {
 #' @param nsm number of points used to perform convolution, should less than \code{nbin}, default 10
 #' @param addsm number of additional times of revolution performed, default 1
 #' @param qval quantile of each sector, used to determine the edge of the hull, should less than 1, default 0.95
-#' @param sizefac expansion size factor, larger value means bigger hull, default 1.5
+#' @param sfac expansion size factor, larger value means bigger hull, default 1.5
 #' @inheritParams ggplot2::layer
-#' @inheritParams ggplot2::geom_polygen
+#' @inheritParams ggplot2::geom_point
 #'
 #' @import ggplot2
 #'
@@ -112,12 +112,12 @@ polar2cart <- function(r, t, xm, ym) {
 stat_unchull <- function(
   mapping = NULL, data = NULL, geom = "polygon",
   position = "identity", na.rm = F, show.legend = NA,
-  inherit.aes = T, nbin = 100, nsm = 10, addsm = 1, qval = 0.95, sizefac = 1.5, ...) {
+  inherit.aes = T, nbin = 100, nsm = 10, addsm = 1, qval = 0.95, sfac = 1.5, ...) {
 
   layer(
     stat = StatUnchull, data = data, mapping = mapping, geom = geom,
     position = position, show.legend = show.legend, inherit.aes = inherit.aes,
-    params = list(na.rm = na.rm, nbin = nbin, nsm = nsm, addsm = addsm, qval = qval, sizefac = sizefac, ...)
+    params = list(na.rm = na.rm, nbin = nbin, nsm = nsm, addsm = addsm, qval = qval, sfac = sfac, ...)
   )
 }
 
@@ -131,10 +131,10 @@ StatUnchull <- ggproto(
   required_aes = c("x", "y"),
 
   compute_group = function(
-    data, scales, params, nbin = 100, nsm = 10, addsm = 1, qval = 0.95, sizefac = 1.5) {
+    data, scales, params, nbin = 100, nsm = 10, addsm = 1, qval = 0.95, sfac = 1.5) {
 
     chullData <- smoothUnchull(
-      data$x, data$y, nbin = nbin, nsm = nsm, addsm = addsm, qval = qval, sizefac = sizefac)
+      data$x, data$y, nbin = nbin, nsm = nsm, addsm = addsm, qval = qval, sfac = sfac)
 
     data.frame(x = chullData$x, y = chullData$y)
   }

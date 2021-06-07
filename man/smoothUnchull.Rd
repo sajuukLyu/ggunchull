@@ -5,7 +5,7 @@
 \title{smoothUnchull}
 \usage{
 smoothUnchull(x, y, nbin = 100, nsm = 10, addsm = 1, qval = 0.95,
-  sizefac = 1.5)
+  sfac = 1.5)
 }
 \arguments{
 \item{x}{a vector of x coordinates}
@@ -20,7 +20,7 @@ smoothUnchull(x, y, nbin = 100, nsm = 10, addsm = 1, qval = 0.95,
 
 \item{qval}{quantile of each sector, used to determine the edge of the hull, should less than 1, default 0.95}
 
-\item{sizefac}{expansion size factor, larger value means bigger hull, default 1.5}
+\item{sfac}{expansion size factor, larger value means bigger hull, default 1.5}
 }
 \value{
 a list of coordinates of the hull
