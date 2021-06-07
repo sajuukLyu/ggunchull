@@ -7,7 +7,7 @@
 #' @param y a vector of y coordinates
 #' @param nbin number of points used to shape the hull, default 100
 #' @param nsm number of points used to perform convolution, should less than \code{nbin}, default 10
-#' @param addsm number of additional times of revolution performed, default 1
+#' @param addsm number of additional times of convolution performed, default 1
 #' @param qval quantile of each sector, used to determine the edge of the hull, should less than 1, default 0.95
 #' @param sfac expansion size factor, larger value means bigger hull, default 1.5
 #'
@@ -100,7 +100,7 @@ polar2cart <- function(r, t, xm, ym) {
 #'
 #' @param nbin number of points used to shape the hull, default 100
 #' @param nsm number of points used to perform convolution, should less than \code{nbin}, default 10
-#' @param addsm number of additional times of revolution performed, default 1
+#' @param addsm number of additional times of convolution performed, default 1
 #' @param qval quantile of each sector, used to determine the edge of the hull, should less than 1, default 0.95
 #' @param sfac expansion size factor, larger value means bigger hull, default 1.5
 #' @inheritParams ggplot2::layer

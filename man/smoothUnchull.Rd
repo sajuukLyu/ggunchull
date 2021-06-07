@@ -16,7 +16,7 @@ smoothUnchull(x, y, nbin = 100, nsm = 10, addsm = 1, qval = 0.95,
 
 \item{nsm}{number of points used to perform convolution, should less than \code{nbin}, default 10}
 
-\item{addsm}{number of additional times of revolution performed, default 1}
+\item{addsm}{number of additional times of convolution performed, default 1}
 
 \item{qval}{quantile of each sector, used to determine the edge of the hull, should less than 1, default 0.95}
 

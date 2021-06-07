@@ -53,7 +53,7 @@ the default plot specification, e.g. \code{\link[=borders]{borders()}}.}
 
 \item{nsm}{number of points used to perform convolution, should less than \code{nbin}, default 10}
 
-\item{addsm}{number of additional times of revolution performed, default 1}
+\item{addsm}{number of additional times of convolution performed, default 1}
 
 \item{qval}{quantile of each sector, used to determine the edge of the hull, should less than 1, default 0.95}
 

@@ -42,7 +42,7 @@ It has five parameters:
 
 - **nbin**: number of points used to shape the hull, default 100.
 - **nsm**: number of points used to perform convolution, should less than **nbin**, default 10.
-- **addsm**: number of additional times of revolution performed, default 1.
+- **addsm**: number of additional times of convolution performed, default 1.
 - **qval**: quantile of each sector, used to determine the edge of the hull, should less than 1, default 0.95.
 - **sfac**: expansion size factor, larger value means bigger hull, default 1.5.
 
