@@ -4,8 +4,7 @@
 \alias{smoothUnchull}
 \title{smoothUnchull}
 \usage{
-smoothUnchull(x, y, nbin = 100, nsm = 10, addsm = 1, qval = 0.95,
-  sfac = 1.5)
+smoothUnchull(x, y, nbin = 100, nsm = 10, addsm = 1, qval = 0.95, sfac = 1.5)
 }
 \arguments{
 \item{x}{a vector of x coordinates}

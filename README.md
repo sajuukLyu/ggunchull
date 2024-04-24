@@ -1,5 +1,5 @@
-# ggunchull
-A ggplot extension for drawing smooth non-convex circles around a set of points.
+# gg-unc-hull
+A ggplot extension for drawing smooth non-convex irregular hulls around groups of points, which can fit the shape of boundaries perfectly!
 
 ## Install
 
@@ -11,21 +11,24 @@ devtools::install_github("sajuukLyu/ggunchull", type = "source")
 
 ## Usage
 
-Take the 10X PBMC3k dataset for example:
+Take a pancreas dataset for example:
 
 ```R
-library(Seurat)
 library(ggplot2)
 library(ggunchull)
 
-data("pbmc3k")
+data("pancExample")
+plotData <- pancExample
 
-plotData <- as.data.frame(pbmc3k[["tsne"]]@cell.embeddings)
-plotData$cluster <- pbmc3k$seurat_clusters
+# setup a proper distance to extend (and simplify) the circle (here use 3% of the range of x axis)
+delta_r <- 0.03
+th_r <- 0.03
+delta <- diff(range(plotData$UMAP_1)) * delta_r
+th <- diff(range(plotData$UMAP_1)) * th_r
 
-ggplot(plotData, aes(x = tSNE_1, y = tSNE_2, fill = cluster, color = cluster)) +
-  stat_unchull(alpha = 0.5, size = 2) +
-  geom_point(size = 0.5) +
+ggplot(plotData, aes(x = UMAP_1, y = UMAP_2)) +
+  geom_point(aes(color = celltype), size = 0.3, shape = 16) +
+  stat_unchull(aes(color = celltype, fill = celltype), alpha = 0.3, n = 5, delta = delta, th = th) +
   theme(
     aspect.ratio = 1,
     panel.background = element_blank(),
@@ -36,17 +39,5 @@ ggplot(plotData, aes(x = tSNE_1, y = tSNE_2, fill = cluster, color = cluster)) +
 
 ![](plot/circleClusters.png)
 
-The key function is `stat_unchull`, which can draw a smooth non-convex circle around every groups of cells.
-
-It has five parameters:
-
-- **nbin**: number of points used to shape the hull, default 100.
-- **nsm**: number of points used to perform convolution, should less than **nbin**, default 10.
-- **addsm**: number of additional times of convolution performed, default 1.
-- **qval**: quantile of each sector, used to determine the edge of the hull, should less than 1, default 0.95.
-- **sfac**: expansion size factor, larger value means bigger hull, default 1.5.
-
-It may be useful to adjust them to make your plots look better.
-
-
+The detailed algorithm will be explained later soon... (when I have free time)
 
