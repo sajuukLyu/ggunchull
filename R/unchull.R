@@ -155,8 +155,15 @@ step4_simplify <- function(x, y, th) {
 #'
 #' @export
 step5_smooth <- function(x, y) {
+  
+  tf <- tempfile(fileext=".png")
+  png(tf)
   plot.new()
-  graphics::xspline(x = x, y = y, shape = 1, open = F, draw = F)
+  tmp <- graphics::xspline(x = x, y = y, shape = 1, open = F, draw = F)
+  invisible(dev.off())
+  unlink(tf)
+  
+  list(x = tmp$x, y = tmp$y)
 }
 
 

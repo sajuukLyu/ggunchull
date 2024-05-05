@@ -37,7 +37,7 @@ ggplot(plotData, aes(x = UMAP_1, y = UMAP_2)) +
   )
 ```
 
-![](plot/circleClusters.png)
+<img src="plot\circleClusters.png"/>
 
 The detailed algorithm will be explained later soon... (when I have free time)
 
