@@ -1,7 +1,7 @@
 Package: ggunchull
 Type: Package
 Title: A ggplot extension for drawing smooth non-convex irregular circles around a set of points.
-Version: 1.0.0
+Version: 1.0.1
 Author: Yulin Lyu
 Maintainer: Yulin Lyu <lvyulin@pku.edu.cn>
 Description: A ggplot extension for drawing smooth non-convex irregular hulls around groups of points, which can fit the shape of boundaries perfectly!
