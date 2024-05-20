@@ -256,8 +256,8 @@ cart2polar <- function(x, y, xm = median(x), ym = median(y)) {
 polar2cart <- function(r, t, xm, ym) {
   stopifnot(length(r) == length(t))
 
-  x <- r * cospi(t) + xm
-  y <- r * sinpi(t) + ym
+  x <- r * cos(t) + xm
+  y <- r * sin(t) + ym
 
   list(x = x, y = y)
 }
